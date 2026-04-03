@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .vscode/
+DS_Store
+.env
 
 # Logs
-DS_Store
+logs/
