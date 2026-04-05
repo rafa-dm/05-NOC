@@ -3,6 +3,10 @@ dist/
 .vscode/
 DS_Store
 .env
+mongo/
+postgres/
 
 # Logs
 logs/
+
+/generated
