@@ -1,6 +1,12 @@
 node_modules/
 dist/
 .vscode/
+DS_Store
+.env
+mongo/
+postgres/
 
 # Logs
-DS_Store
+logs/
+
+/generated
