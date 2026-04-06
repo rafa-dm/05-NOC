@@ -1,40 +1,104 @@
 # Proyecto NOC
 
-El objetivo es crear una serie de tareas usando Clean Architecture con TypeScript
+Sistema de monitorización de servicios construido con Clean Architecture y TypeScript.
 
-# dev
+---
 
-1. Clonar el archivo env.template a .env
-2. Configurar las variables de entorno
+## Requisitos previos
 
+- Node.js
+- Docker
+
+---
+
+## Configuración de desarrollo
+
+### 1. Variables de entorno
+
+Copia el template y rellena los valores:
+
+```bash
+cp .env.template .env
 ```
+
+```env
 PORT=3000
 
-MAILER_SERVICE
+MAILER_SERVICE=
 MAILER_EMAIL=
 MAILER_SECRET_KEY=
 
 PROD=false
 
-MONGO_URL=
-MONGO_DB_NAME=
+MONGO_URL=mongodb://<user>:<pass>@localhost:27017/
+MONGO_DB_NAME=NOC
 MONGO_USER=
 MONGO_PASS=
 
-POSTGRES_URL=
+POSTGRES_URL=postgresql://<user>:<pass>@localhost:5432/<db>
 POSTGRES_USER=
-POSTGRES_DB=
+POSTGRES_DB=NOC
 POSTGRES_PASSWORD=
 ```
 
-3. Ejecutar el comando `npm install`
+### 2. Instalar dependencias
 
-4. Levantar las bases de datos con el comando
+```bash
+npm install
+```
 
-   ```
-   docker compose up -d
-   ```
+> Ejecuta automáticamente `prisma generate` via `postinstall`.
 
-5. Ejecutar `npm run dev`
+### 3. Levantar bases de datos y migrar
 
-> Nota: `npm install` ejecuta automáticamente `prisma generate` gracias al script `postinstall`, por lo que no es necesario ejecutarlo manualmente después de clonar el proyecto.
+```bash
+npm run setup
+```
+
+> Arranca los contenedores Docker y ejecuta las migraciones de Prisma en un solo paso.
+
+### 4. Arrancar en modo desarrollo
+
+```bash
+npm run dev
+```
+
+---
+
+## Configuración de tests
+
+### 1. Variables de entorno de test
+
+Copia el template y rellena los valores:
+
+```bash
+cp .env.test.template .env.test
+```
+
+> Los contenedores de test usan puertos distintos para poder coexistir con los de desarrollo:
+> - MongoDB: `27018`
+> - PostgreSQL: `5433`
+
+### 2. Ejecutar tests
+
+```bash
+npm run test:watch   # modo watch (levanta contenedores automáticamente)
+npm test             # ejecución única
+npm run test:coverage  # con informe de cobertura
+```
+
+---
+
+## Scripts disponibles
+
+| Script | Descripción |
+|---|---|
+| `npm run dev` | Servidor en modo desarrollo con hot-reload |
+| `npm run build` | Compila el proyecto a `dist/` |
+| `npm start` | Compila y ejecuta en producción |
+| `npm run setup` | Levanta Docker (dev) y ejecuta migraciones |
+| `npm run generate` | Genera el cliente de Prisma |
+| `npm run migrate` | Ejecuta las migraciones de Prisma |
+| `npm test` | Ejecuta los tests |
+| `npm run test:watch` | Tests en modo watch |
+| `npm run test:coverage` | Tests con cobertura |

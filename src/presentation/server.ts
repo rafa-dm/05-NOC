@@ -1,3 +1,4 @@
+import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-mutiple";
 import { FileSystemDataSource } from "../infrastructure/datasources/file-system.datasource";
 import { MongoLogDataSource } from "../infrastructure/datasources/mongo-log.datasource";
@@ -27,14 +28,19 @@ export class Server {
     // const logs = await LogRepository.getLogs(LogSeverityLevel.low);
     // console.log(logs);
 
-    // CronService.createJob("*/5 * * * * *", () => {
-    //   const url = "http://google.com";
+    CronService.createJob("*/5 * * * * *", () => {
+      const url = "http://google.com";
 
-    //   new CheckServiceMultiple(
-    //     [fsLogRepository, postgresLogRepository, mongoLogRepository],
-    //     () => console.log(`${url} is ok`),
-    //     (error) => console.log(error),
-    //   ).execute(url);
-    // });
+      // new CheckServiceMultiple(
+      //   [fsLogRepository, postgresLogRepository, mongoLogRepository],
+      //   () => console.log(`${url} is ok`),
+      //   (error) => console.log(error),
+      // ).execute(url);
+      new CheckService(
+        fsLogRepository,
+        () => console.log(`${url} is ok`),
+        (error) => console.log(error),
+      ).execute(url);
+    });
   }
 }

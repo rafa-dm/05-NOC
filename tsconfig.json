@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules", "dist"],
-  "include": ["src", "generated/prisma"],
+  "include": ["src", "generated/prisma", "tests", "prisma.config.ts"],
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
@@ -10,9 +10,8 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
-    "moduleResolution": "node",
     "target": "esnext",
-    "types": ["node", "nodemailer"],
+    "types": ["node", "nodemailer", "jest"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     // For nodejs:
@@ -44,6 +43,7 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0"
   }
 }

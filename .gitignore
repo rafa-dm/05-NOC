@@ -1,10 +1,14 @@
 node_modules/
 dist/
 .vscode/
-DS_Store
+.DS_Store
 .env
-mongo/
+.env.test
+/mongo/
+mongo-test/
 postgres/
+postgres-test/
+coverage/
 
 # Logs
 logs/
