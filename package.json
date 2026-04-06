@@ -10,10 +10,10 @@
     "generate": "prisma generate",
     "migrate": "prisma migrate dev --name init",
     "postinstall": "npm run generate",
-    "setup": "docker compose up -d && npm run migrate",
-    "docker:test": "docker compose -f docker-compose.test.yml --env-file .env.test up -d",
+    "setup": "docker compose --project-name noc-dev up -d && npm run migrate",
+    "docker:test": "docker compose -f docker-compose.test.yml --project-name noc-test --env-file .env.test up -d",
     "test": "npm run docker:test && jest",
-    "test:watch": "npm run docker:test && jest --watch",
+    "test:watch": "npm run docker:test && jest --watchAll",
     "test:coverage": "npm run docker:test && jest --coverage"
   },
   "keywords": [],
