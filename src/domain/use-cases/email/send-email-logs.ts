@@ -6,7 +6,7 @@ interface SendLogEmailUseCase {
   execute: (to: string | string[]) => Promise<boolean>;
 }
 
-export class sendEmailLogs implements SendLogEmailUseCase {
+export class SendEmailLogs implements SendLogEmailUseCase {
   constructor(
     private readonly emailService: EmailService,
     private readonly logRepository: LogRepository,
@@ -26,8 +26,6 @@ export class sendEmailLogs implements SendLogEmailUseCase {
         origin: "send-email-logs.ts",
       });
       this.logRepository.saveLog(log);
-
-      return false;
 
       return true;
     } catch (error) {

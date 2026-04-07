@@ -20,7 +20,7 @@ export class Server {
     console.log("Server started...");
 
     // todo: Mandar email
-    // new sendEmailLogs(emailService, fileSystemLogRepository).execute([
+    // new SendEmailLogs(emailService, fileSystemLogRepository).execute([
     //   "puercasocuellamos@gmail.com",
     // ]);
     // emailService.sendEmailWithFileSystemLogs(["puercasocuellamos@gmail.com"]);

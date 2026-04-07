@@ -30,6 +30,8 @@ export class PostgresLogDatasource implements LogDatasource {
       where: { level: level },
     });
 
-    return dbLogs.map((dbLog) => LogEntity.fromObject(dbLog));
+    return dbLogs.map((dbLog) =>
+      LogEntity.fromObject({ ...dbLog, level: dbLog.level.toLowerCase() }),
+    );
   }
 }

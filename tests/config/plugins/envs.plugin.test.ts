@@ -12,7 +12,7 @@ describe("envs.plugin.ts", () => {
       MONGO_DB_NAME: "NOC-TEST",
       MONGO_USER: "rafa",
       MONGO_PASS: "123456789",
-      POSTGRES_URL: "postgresql://postgres:123456789@localhost:5433/NOC",
+      POSTGRES_URL: "postgresql://postgres:123456789@localhost:5433/NOC-TEST",
       POSTGRES_USER: "postgres",
       POSTGRES_DB: "NOC-TEST",
       POSTGRES_PASSWORD: "123456789",
